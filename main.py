@@ -386,6 +386,20 @@ def nf_proxy(sid, p):
         return f"Proxy error: {e}", 502
 
 
+@flask_app.route("/")
+def home():
+    curr = get_public_url()
+    return f"""
+    <div style="font-family:sans-serif;text-align:center;padding-top:50px;background-color:#121212;color:white;height:100vh;margin:0;">
+        <h1 style="color:#2ecc71;font-size:3em;">🤖 Bot is Online</h1>
+        <p style="font-size:1.2em;">Public URL: <code style="background:#333;padding:5px 10px;border-radius:5px;">{curr}</code></p>
+        <hr style="width:300px;margin:30px auto;border:0;border-top:1px solid #333;">
+        <p style="color:#7f8c8d;font-size:1em;">Netflix Proxy System Active & Ready</p>
+        <p style="color:#e74c3c;font-size:0.9em;margin-top:20px;">Use <b>/seturl</b> in Telegram to update this address</p>
+    </div>
+    """, 200
+
+
 @flask_app.route("/health")
 def health():
     return "OK", 200
